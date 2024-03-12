@@ -94,6 +94,44 @@ ul {
     top: 0;
     z-index: 999;
     width: 100%;
+    background-color: transparent;
+    &.fixed-white {
+        background-color: white;
+        .text-white {
+            color: $darkgrey !important;
+        }
+        .moon {
+            svg {
+                path {
+                    fill: $darkgrey;
+                }
+            }
+        }
+        .search {
+            svg {
+                path {
+                    stroke: $darkgrey;
+                }
+            }
+        }
+    }
+
+    .search {
+        svg {
+            path {
+                stroke: white;
+            }
+        }
+    }
+    .moon {
+        margin-left: 25px;
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+
 }
 
 // HEADER BANNER
@@ -150,12 +188,14 @@ ul {
     }
 }
 
+// Video
 .double-box {
     background-color: $darkgrey;
     padding: 40px;
     margin-top: 119px;
 }
 
+// sticky image right
 .sticky-image {
     margin-top: 120px;
     margin-bottom: 102px;
@@ -171,6 +211,7 @@ ul {
     }
 }
 
+// TEXT SCROLL
 @keyframes text_animation {
     0% {
         transform: translate3d(0, 0, 0);
@@ -180,7 +221,6 @@ ul {
     }
 }
 
-// TEXT SCROLL
 .content-txt-scroll {
     background-color: $darkgrey;
     padding: 10px 0;
@@ -219,8 +259,13 @@ ul {
         margin-bottom: 24px;
         label {
             font-size: 22px;
+            font-weight: 700;
             text-transform: uppercase;
+            color: $lightgrey;
             cursor: pointer;
+            padding-right: 10px;
+            margin-right: 10px;
+            border-right: 2px solid $lightgrey;
 
             input[type="radio"] {
                 width: 0;
@@ -232,6 +277,7 @@ ul {
             position: relative;
             margin-bottom: 30px;
             p {
+                font-size: 40px;
                 position: absolute;
                 left: 30px;
                 bottom: 30px;
@@ -243,9 +289,18 @@ ul {
     }
 }
 
+// BRAND
 .brand-client {
+    overflow-x: hidden;
     padding-top: 130px;
-    
+    margin-bottom: 100px;
+    .slide-client {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 50px;
+        }
+    }
 }
 
 // FOOTER

@@ -1,6 +1,7 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
-import { vueVimeoPlayer } from 'vue-vimeo-player'
+import { onMounted, ref, computed } from 'vue';
+import VimeoPlayer from './VimeoPlayer.vue'
+import Number from './Number.vue'
 
 const images = [
   {
@@ -23,57 +24,24 @@ const images = [
 const selectedCategory = ref(null);
 
 const filteredImages = computed(() => {
+  const labelFil = document.querySelectorAll(".filter label");
   if (selectedCategory.value && selectedCategory.value !== 'All') {
-    return images.filter(e => e.category == selectedCategory.value)
+    return images.filter(e => e.category == selectedCategory.value);
+    labelFil.value.classList.remove('selected')
   } else {
     return images
+    labelFil.value.classList.add('selected')
   }
-});
-
-onMounted(() => {
-  const counters = document.querySelectorAll(".counter");
-  counters.forEach((counter) => {
-    counter.innerText = "0";
-    const updateCounter = () => {
-      const target = +counter.getAttribute("data-target");
-      const count = +counter.innerText;
-      const increment = target / 200;
-      if (count < target) {
-        counter.innerText = `${Math.ceil(count + increment)}`;
-        setTimeout(updateCounter, 1);
-      } else counter.innerText = target;
-    };
-    updateCounter();
-  });
 });
 </script>
 
 <template>
-  <div class="box-numbers px-6030">
-    <div class="text-numbers">
-      <p class="title text-center">LOREM IPSUM</p>
-      <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori.</p>
-    </div>
-    <div class="content-numbers">
-      <div class="counter-container">
-        <div class="counter" data-target="1000"></div>
-      </div>
-      <div class="counter-container">
-        <div class="counter" data-target="100"></div>
-      </div>
-      <div class="counter-container">
-        <div class="counter plus" data-target="5"></div>
-      </div>
-    </div>
-    <div class="text-center">
-      <button type="button" class="btn btn-dark">lorem ipsum</button>
-    </div>
-  </div>
-
+  <Number />
   <div class="double-box">
     <div class="row">
       <div class="col-12 col-md-6">
-        <vimeo-player ref="player" :video-id="videoID" @ready="onReady" :player-height="height"></vimeo-player>
+        <!--<iframe src="https://player.vimeo.com/video/596776041?h=7db3446cef" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>-->
+        <VimeoPlayer />
       </div>
       <div class="col-12 col-md-6">
         <div class="content-text">
@@ -140,7 +108,16 @@ onMounted(() => {
     </div>
   </div>
 
-  <div class="brand-client">
-
+  <div class="brand-client" ref="scrollXbrand">
+    <div class="slide-client">
+      <img src="../assets/img/image1.png" alt="logo1">
+      <img src="../assets/img/image2.png" alt="logo2">
+      <img src="../assets/img/image3.png" alt="logo3">
+      <img src="../assets/img/image4.png" alt="logo4">
+      <img src="../assets/img/image1.png" alt="logo1">
+      <img src="../assets/img/image2.png" alt="logo2">
+      <img src="../assets/img/image3.png" alt="logo3">
+      <img src="../assets/img/image4.png" alt="logo4">
+    </div>
   </div>
 </template>
