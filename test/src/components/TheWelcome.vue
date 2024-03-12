@@ -38,10 +38,11 @@ const filteredImages = computed(() => {
 <template>
   <Number />
   <div class="double-box">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-12 col-md-6">
-        <!--<iframe src="https://player.vimeo.com/video/596776041?h=7db3446cef" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>-->
-        <VimeoPlayer />
+        <div class="box-video">
+          <VimeoPlayer />
+        </div>
       </div>
       <div class="col-12 col-md-6">
         <div class="content-text">

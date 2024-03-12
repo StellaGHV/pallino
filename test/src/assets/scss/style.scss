@@ -1,6 +1,3 @@
-@import "node_modules/bootstrap/scss/bootstrap.scss";
-@import 'bootstrap-vue/dist/bootstrap-vue.css';
-
 $darkgrey: #101010;
 $middlegrey: #262626;
 $lightgrey: #E0E0E0;
@@ -100,38 +97,52 @@ ul {
         .text-white {
             color: $darkgrey !important;
         }
-        .moon {
-            svg {
-                path {
-                    fill: $darkgrey;
+        .nav-second {
+            .moon {
+                svg {
+                    path {
+                        fill: $darkgrey;
+                    }
+                }
+            }
+            .search {
+                svg {
+                    path {
+                        stroke: $darkgrey;
+                    }
                 }
             }
         }
+    }
+
+    .container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-pallino {
+        margin: 0 auto;
+    }
+
+    .nav-second {
+        display: flex;
+        align-items: center;
         .search {
             svg {
                 path {
-                    stroke: $darkgrey;
+                    stroke: white;
+                }
+            }
+        }
+        .moon {
+            margin-left: 25px;
+            svg {
+                path {
+                    fill: white;
                 }
             }
         }
     }
-
-    .search {
-        svg {
-            path {
-                stroke: white;
-            }
-        }
-    }
-    .moon {
-        margin-left: 25px;
-        svg {
-            path {
-                fill: white;
-            }
-        }
-    }
-
 }
 
 // HEADER BANNER
@@ -147,11 +158,16 @@ ul {
     .content-slide {
         background-color: white;
         position: absolute;
-        bottom: -25%;
-        left: 60px;
+        top: 100%;
+        left: 0;
         max-width: 660px;
         padding: 40px;
         border: 1px solid $lightgrey;
+        @media screen and (min-width: 768px) {
+            left: 60px;
+            bottom: -25%; 
+            top: auto;
+        }
     }
 }
 
@@ -191,8 +207,18 @@ ul {
 // Video
 .double-box {
     background-color: $darkgrey;
-    padding: 40px;
     margin-top: 119px;
+    overflow: hidden;
+    .content-text {
+        padding: 40px;
+    }
+    .box-video {
+        overflow: hidden;
+    }
+    iframe {
+        //width: 100%;
+        //height: auto;
+    }
 }
 
 // sticky image right
