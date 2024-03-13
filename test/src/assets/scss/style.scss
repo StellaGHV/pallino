@@ -91,40 +91,74 @@ ul {
     top: 0;
     z-index: 999;
     width: 100%;
-    background-color: transparent;
-    &.fixed-white {
-        background-color: white;
-        .text-white {
-            color: $darkgrey !important;
-        }
-        .nav-second {
-            .moon {
-                svg {
-                    path {
-                        fill: $darkgrey;
+    background-color: white;
+    padding: 0;
+    @media screen and (min-width: 992px) {
+        background-color: transparent;
+        &.fixed-white {
+            background-color: white;
+            .text-white {
+                color: $darkgrey !important;
+            }
+            .nav-second {
+                .moon {
+                    svg {
+                        path {
+                            fill: $darkgrey;
+                        }
                     }
                 }
-            }
-            .search {
-                svg {
-                    path {
-                        stroke: $darkgrey;
+                .search {
+                    svg {
+                        path {
+                            stroke: $darkgrey;
+                        }
                     }
                 }
             }
         }
     }
-
-    .container {
+    
+    .container-fluid {
         margin: 0;
-        padding: 0;
+        justify-content: flex-start;
+        @media screen and (min-width: 992px) {
+            justify-content: space-between;
+        }
+        &.bkg-dark {
+            background-color: $middlegrey;
+            .menu-pallino .nav-link.text-white {
+                color: white !important;
+            }
+        }
     }
 
     .navbar-brand {
-        padding: 32px 17px;
+        padding: 16px 0;
         margin: 0;
         background-color: white;
+        @media screen and (min-width: 992px) {
+            padding: 32px 17px;
+        }
     }
+
+    .navbar-toggler {
+        position: absolute;
+        top: 35%;
+        right: 30px;
+        border: none;
+    }
+
+    .navbar-collapse {
+        @media screen and (max-width: 991px) {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: $middlegrey;
+        } 
+    }
+
     .menu-pallino {
         margin: 0 auto;
 
@@ -148,12 +182,17 @@ ul {
             margin-top: 0;
             border-radius: 0;
             background-color: $middlegrey;
+            border: none;
+            border-top: 1px solid #4b4b4b;
 
             .col-menu {
-                border-right: 1px solid #E0E0E033;
+                border-right: 1px solid #4b4b4b;
                 padding: 40px 0;
                 &:last-of-type {
                     border: none;
+                }
+                &:empty {
+                    padding: 0;
                 }
             }
 
@@ -171,6 +210,10 @@ ul {
                 font-weight: 700;
                 line-height: 36px;
                 color: $lightgrey;
+
+                &:hover {
+                    background-color: transparent;
+                }
             }
         }
     }
@@ -204,6 +247,7 @@ ul {
 
     .swiper-slide {
         height: 80vh;
+        background-position: center center;
     }
 
     .content-slide {

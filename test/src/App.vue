@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, onUpdated } from "vue";
 import SwiperHeader from './components/SwiperHeader.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import FooterCont from './components/FooterCont.vue'
@@ -18,27 +18,26 @@ onMounted(() => {
 });
 
 // Menu
-const navHeader = ref(null)
-const dropOpen = computed(() => {
-  const linkOpen = document.querySelectorAll(".menu-pallino .nav-link.show");
-  const navHeaderDiv = document.querySelectorAll(".nav-pallino");
+const navHeaderBkg = ref(null)
+function dropOpen(){
+  const linkOpen = document.querySelector(".menu-pallino .nav-link");
   if (linkOpen.classList.contains("show")) {
-    navHeaderDiv.value.classList.add('bkg-dark');
+    navHeaderBkg.value.classList.add('bkg-dark');
   } else {
-    navHeaderDiv.value.classList.remove('bkg-dark');
+    navHeaderBkg.value.classList.remove('bkg-dark');
   }
-});
+};
 </script>
 
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg nav-pallino px-6030" ref="stickyHeader">
-        <div class="container" ref="navHeader">
+    <nav class="navbar navbar-expand-lg nav-pallino" ref="stickyHeader">
+        <div class="container-fluid px-6030" ref="navHeaderBkg">
             <a class="navbar-brand" href="javascript:;"><img src="./assets/logo.svg" alt="logo"></a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo">
                 <ul class="navbar-nav menu-pallino">
                     <li class="nav-item">
-                        <a v-on:click="dropOpen" class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a @click="dropOpen" class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           About
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

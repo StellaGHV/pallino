@@ -8,9 +8,7 @@ const image = ref(backgroundUrl);
     <swiper :modules="modules"
     :slides-per-view="1"
     navigation
-    :pagination="{ clickable: true }"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange">
+    :pagination="{ clickable: true }">
       <swiper-slide :style="{
           backgroundImage: `url(${image})`, backgroundSize: 'cover'}" loading="lazy">
         <div class="content-slide">

@@ -24,10 +24,8 @@ const filteredImages = computed(() => {
   const labelFil = document.querySelectorAll(".filter label");
   if (selectedCategory.value && selectedCategory.value !== 'All') {
     return images.filter(e => e.category == selectedCategory.value);
-    labelFil.value.classList.remove('selected')
   } else {
     return images
-    labelFil.value.classList.add('selected')
   }
 });
 </script>
