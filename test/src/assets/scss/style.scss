@@ -120,8 +120,59 @@ ul {
         padding: 0;
     }
 
+    .navbar-brand {
+        padding: 32px 17px;
+        margin: 0;
+        background-color: white;
+    }
     .menu-pallino {
         margin: 0 auto;
+
+        > .nav-item .nav-link {
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0;
+            margin: 0 16px;
+            &::after {
+                content: none;
+            }
+            &.show {
+                border-bottom: 1px solid white;
+            }
+        }
+
+        .dropdown-menu {
+            left: 0;
+            right: 0;
+            padding: 0 40px;
+            margin-top: 0;
+            border-radius: 0;
+            background-color: $middlegrey;
+
+            .col-menu {
+                border-right: 1px solid #E0E0E033;
+                padding: 40px 0;
+                &:last-of-type {
+                    border: none;
+                }
+            }
+
+            .title-dropdown {
+                p {
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #E0E0E080;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                }
+            }
+            .dropdown-item {
+                padding: 0;
+                font-weight: 700;
+                line-height: 36px;
+                color: $lightgrey;
+            }
+        }
     }
 
     .nav-second {
@@ -201,6 +252,15 @@ ul {
                 }
             }
         }
+        .yellow-box {
+            background-color: #F5D200;
+            display: inline-block;
+            margin-bottom: 29px;
+            p {
+                margin: 0;
+                padding: 5px 10px;
+            }
+        }
     }
 }
 
@@ -214,10 +274,6 @@ ul {
     }
     .box-video {
         overflow: hidden;
-    }
-    iframe {
-        //width: 100%;
-        //height: auto;
     }
 }
 
@@ -233,7 +289,7 @@ ul {
     img {
         width: 100%;
         position: sticky;
-        top: 0;
+        top: 140px;
     }
 }
 

@@ -1,16 +1,8 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import SwiperHeader from './components/SwiperHeader.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import FooterCont from './components/FooterCont.vue'
-
-import backgroundUrl from './assets/img/header_image.jpg';
-const image = ref(backgroundUrl);
-
-// Swiper
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
 
 // Nav sticky
 const stickyHeader = ref(null)
@@ -24,20 +16,53 @@ function handleScroll(){
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 });
+
+// Menu
+const navHeader = ref(null)
+const dropOpen = computed(() => {
+  const linkOpen = document.querySelectorAll(".menu-pallino .nav-link.show");
+  const navHeaderDiv = document.querySelectorAll(".nav-pallino");
+  if (linkOpen.classList.contains("show")) {
+    navHeaderDiv.value.classList.add('bkg-dark');
+  } else {
+    navHeaderDiv.value.classList.remove('bkg-dark');
+  }
+});
 </script>
 
 <template>
   <header>
     <nav class="navbar navbar-expand-lg nav-pallino px-6030" ref="stickyHeader">
-        <div class="container">
+        <div class="container" ref="navHeader">
             <a class="navbar-brand" href="javascript:;"><img src="./assets/logo.svg" alt="logo"></a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo">
                 <ul class="navbar-nav menu-pallino">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="">About</a>
+                        <a v-on:click="dropOpen" class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <div class="row justify-content-center">
+                            <div class="col-12 col-md-10">
+                              <div class="row">
+                                <div class="col-12 col-md-4 col-menu">
+                                  <ul>
+                                    <li class="title-dropdown"><p>About</p></li>
+                                    <li><a class="dropdown-item" href="javascript:;">Company</a></li>
+                                    <li><a class="dropdown-item" href="javascript:;">Map</a></li>
+                                    <li><a class="dropdown-item" href="javascript:;">Certification</a></li>
+                                    <li><a class="dropdown-item" href="javascript:;">Stores</a></li>
+                                  </ul>
+                                </div>
+                                <div class="col-12 col-md-4 col-menu"></div>
+                                <div class="col-12 col-md-4 col-menu"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="">News</a>
+                      <a class="nav-link text-white" href="">News</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="">Services</a>
@@ -59,65 +84,19 @@ onMounted(() => {
               </li>
             </ul>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo" aria-controls="navbarTogglerDemo" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
   </header>
 
-  <swiper :speed="600" :pagination="true" :modules="modules" class="mySwiper">
-      <div slot="container-start"></div>
-      <swiper-slide :style="{
-          backgroundImage: `url(${image})`, backgroundSize: 'cover'}" loading="lazy">
-        <div class="content-slide">
-          <p class="title">LOREM <b>IPSUM</b></p>
-          <p class="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor.
-          </p>
-          <button type="button" class="btn btn-dark">lorem ipsum</button>
-        </div>
-      </swiper-slide>
-      <swiper-slide :style="{
-          backgroundImage: `url(${image})`, backgroundSize: 'cover'}" loading="lazy">
-        <div class="content-slide">
-          <p class="title">LOREM <b>IPSUM</b> 2</p>
-          <p class="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor.
-          </p> 
-        </div>
-      </swiper-slide>
-      <swiper-slide :style="{
-        backgroundImage: `url(${image})`, backgroundSize: 'cover'}" loading="lazy">
-        <div class="content-slide">
-          <p class="title">LOREM <b>IPSUM</b> 3</p>
-          <p class="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor.
-          </p> 
-        </div>
-      </swiper-slide>
-    </swiper>
+  <SwiperHeader />
+
   <main>
+
     <TheWelcome />
+
   </main>
+
   <FooterCont />
 </template>
-
-<script>
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      return {
-        modules: [Pagination],
-      };
-    }
-  };
-</script>
